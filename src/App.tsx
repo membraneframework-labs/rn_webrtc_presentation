@@ -1,29 +1,28 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { Button, StyleSheet, View, Text, TextInput } from 'react-native';
-
 import { VideoChat } from './VideoChat';
 
 export default function App() {
-  const [chatRunning, setChatRunning] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("")
+  const [videoChatPresent, setVideoChatPresent] = useState<Boolean>(false)
 
-  if (chatRunning) {
+  if (videoChatPresent) {
     return (
-      <View style={styles.flex}>
-        <VideoChat userName={userName} />
-        <Button title="Exit chat" onPress={() => setChatRunning(false)}/>
-      </View>
-      );
-  } else {
-    return (
-      <View style={styles.container}>
+      < View style={styles.flex} >
         <Text style={styles.header}>Hello World!</Text>
-        <TextInput value={userName} placeholder="Insert user name" onChangeText={setUserName} style={styles.textInput} />
-        <Button title="Start video chat" onPress={() => setChatRunning(true)}/>
-      </View>
+        <VideoChat displayName={userName} />
+        <Button onPress={() => setVideoChatPresent(false)} title="close video chat" />
+      </View >
     );
   }
+  return (
+    < View style={styles.container} >
+      <Text style={styles.header}>Hello World!</Text>
+      <TextInput value={userName} placeholder="Insert user name" onChangeText={setUserName} style={styles.textInput} />
+      <Button onPress={() => setVideoChatPresent(true)} title="open video chat" />
+    </View >
+  );
 }
 
 const styles = StyleSheet.create({

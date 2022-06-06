@@ -17,3 +17,5 @@ export async function requestPermissions() {
     throw 'Camera permission denied';
   }
 }
+
+export const serverUrl = 'https://videoroom.membraneframework.org/socket';
