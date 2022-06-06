@@ -17,3 +17,5 @@ export async function requestPermissions() {
     throw 'Camera permission denied';
   }
 }
+
+export const serverUrl = 'http://192.168.83.87:4000/socket';

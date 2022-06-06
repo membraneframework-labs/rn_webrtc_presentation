@@ -2,28 +2,15 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { Button, StyleSheet, View, Text, TextInput } from 'react-native';
 
-import { VideoChat } from './VideoChat';
-
 export default function App() {
-  const [chatRunning, setChatRunning] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("")
 
-  if (chatRunning) {
-    return (
-      <View style={styles.flex}>
-        <VideoChat userName={userName} />
-        <Button title="Exit chat" onPress={() => setChatRunning(false)}/>
-      </View>
-      );
-  } else {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Hello World!</Text>
-        <TextInput value={userName} placeholder="Insert user name" onChangeText={setUserName} style={styles.textInput} />
-        <Button title="Start video chat" onPress={() => setChatRunning(true)}/>
-      </View>
-    );
-  }
+  return (
+    < View style={styles.container} >
+      <Text style={styles.header}>Hello World!</Text>
+      <TextInput value={userName} placeholder="Insert user name" onChangeText={setUserName} style={styles.textInput} />
+    </View >
+  );
 }
 
 const styles = StyleSheet.create({
