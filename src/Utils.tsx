@@ -18,4 +18,4 @@ export async function requestPermissions() {
   }
 }
 
-export const serverUrl = 'http://192.168.83.87:4000/socket';
+export const serverUrl = 'https://videoroom.membraneframework.org/socket';
