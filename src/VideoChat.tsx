@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as MembraneWebRTC from "@membraneframework/react-native-membrane-webrtc"
-import { requestPermissions, serverUrl } from "./Utils"
+import { requestPermissions } from "./Utils"
 
-export const VideoChat = ({ displayName }: { displayName: string }) => {
+export const VideoChat = ({ displayName, roomName, serverURL }: { displayName: string, roomName: string, serverURL: string }) => {
   const webRTC = MembraneWebRTC.useMembraneServer();
   const participants = MembraneWebRTC.useRoomParticipants();
 
   useEffect(() => {
     const setup = async () => {
       await requestPermissions();
-      await webRTC.connect(serverUrl, "video_chat", { userMetadata: { displayName: displayName } })
+      await webRTC.connect(serverURL + "/socket", roomName, { userMetadata: { displayName: displayName } })
       await webRTC.joinRoom();
     }
     setup();

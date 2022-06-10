@@ -4,14 +4,16 @@ import { Button, StyleSheet, View, Text, TextInput } from 'react-native';
 import { VideoChat } from './VideoChat';
 
 export default function App() {
-  const [userName, setUserName] = useState<string>("")
+  const [userName, setUserName] = useState<string>("mobile")
+  const [roomName, setRoomName] = useState<string>("test_mobile")
+  const [serverURL, setServerURL] = useState<string>("https://videoroom.membraneframework.org")
   const [videoChatPresent, setVideoChatPresent] = useState<Boolean>(false);
 
   if (videoChatPresent) {
     return (
       < View style={styles.flex} >
         <Text style={styles.header}>Hello World!</Text>
-        <VideoChat displayName={userName} />
+        <VideoChat displayName={userName} roomName={roomName} serverURL={serverURL} />
         <Button onPress={() => setVideoChatPresent(false)} title="close video chat" />
       </View >
     );
@@ -20,6 +22,8 @@ export default function App() {
     < View style={styles.container} >
       <Text style={styles.header}>Hello World!</Text>
       <TextInput value={userName} placeholder="Insert user name" onChangeText={setUserName} style={styles.textInput} />
+      <TextInput value={roomName} placeholder="Insert room name" onChangeText={setRoomName} style={styles.textInput} />
+      <TextInput value={serverURL} placeholder="Insert server URL" onChangeText={setServerURL} style={styles.textInput} />
       <Button onPress={() => setVideoChatPresent(true)} title="open video chat" />
     </View >
   );
